@@ -1,0 +1,288 @@
+/* -----------------------------------
+** Form Element
+-------------------------------------*/
+input:focus{
+    outline: 0;
+}
+.input-group{
+    display: block;
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: $gray;
+      opacity: .7;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: $gray;
+      opacity: .7;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: $gray;
+      opacity: .7;
+    }
+    &__input{
+        height: 40px;
+        box-shadow: none;
+        padding-left: 15px;
+        &:focus{
+            box-shadow: none;
+            outline: 0;
+        }
+    }
+
+    &--border-bottom{
+        .input-group__input{
+            border-width: 0 0 1px 0;
+            border-style: solid;
+            border-color: $border;
+            padding-left: 0;
+            max-width: 100%;
+            width:100%;
+            background: transparent;
+            // &:focus{
+            //     border-color: $base;
+            // }
+        }
+        .input-group__label{
+            margin-bottom: -7px;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        .input-group__select-wrap{
+            .dashborad-select-box {
+                width:100% !important;
+                // overflow-x: hidden;
+                .filter-option{
+                    text-overflow: ellipsis;
+                }
+                .dropdown-menu > li > a {
+                	padding: 3px 10px;
+                	font-weight: 300;
+                	color: $bcolor;
+                }
+                .text{
+                    white-space: normal;
+                    font-size: 13px;
+                    padding-bottom: 6px;
+                }
+                .btn {
+                	// border: 2px solid #E0E0E0;
+                    border-width: 0 0 1px 0;
+                	background: transparent;
+                	padding: 10px 0 10px 0;
+                	border-radius: 0;
+                    width:100%;
+                	box-shadow: none;
+                }
+            }
+            .dropdown-toggle .caret {
+            	right: 29px !important;
+            }
+            .dropdown-menu{
+                min-width: 160px !important;
+                border:0;
+                padding:0;
+                margin:-1px 0 0 0 ;
+            }
+        }
+    }
+}
+.file-import{
+    &__input{
+        display: none !important;
+    }
+    &__label{
+        display: block;
+        border:1px dashed #979797;
+        padding:0;
+        opacity: 0.54;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+    &__import-icon{
+        font-size: 30px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+.dashborad-select-box{
+    .btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default{
+        background: transparent;
+        border-color:$base;
+    }
+    .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default.focus:active, .btn-default:active:focus, .btn-default:active:hover, .open > .dropdown-toggle.btn-default.focus, .open > .dropdown-toggle.btn-default:focus, .open > .dropdown-toggle.btn-default:hover{
+        background: transparent;
+        border-color:$base;
+        box-shadow: none;
+    }
+    .btn-group.open .dropdown-toggle {
+    	box-shadow: none;
+    }
+}
+.btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default, .open > .dropdown-toggle.btn-default:hover{
+    border-color: $border;
+    background: transparent;
+    box-shadow: none;
+    color:$bcolor;
+}
+.bootstrap-select.btn-group .dropdown-menu{
+    box-shadow: 3px 5px 10px 0 rgba(0,0,0,0.15);
+    border:1px solid $border;
+    padding:5px 0;
+    min-width: 280px;
+    li{
+        padding:1px 0;
+
+    }
+}
+.dashborad-select-box .caret {
+	border-width: 0 1px 1px 0;
+	border-style: solid;
+	border-color: $bcolor;
+	padding: 3px;
+     transform: rotate(45deg);
+}
+.dashborad-select-box .bs-caret{
+    display: inline-block;
+    position: relative;
+    top: -8px;
+    right: -20px;
+}
+.dashborad-select-box--small.bootstrap-select.btn-group{
+    .dropdown-menu {
+    	min-width: 180px;
+    }
+}
+
+/* Radio button style */
+.colorfull-radio-button-wrap {
+    input[type="radio"] {
+    	display: none !important;
+    }
+    label {
+    	position: relative;
+    	font-weight:300;
+        padding-left: 20px;
+        z-index: 5;
+        &:before {
+        	position: absolute;
+        	left: 0px;
+        	top: 4px;
+        	width: 13px;
+        	height: 13px;
+        	border: 1px solid $border;
+        	-webkit-border-radius: 100%;
+        	border-radius: 100%;
+        	content: '';
+        	background: #fff;
+        }
+    }
+    input[type="radio"]:checked + label::before {
+    	border-width: 4px;
+        border-color: #56ABF1;
+    }
+}
+.tab-style-radio{
+    input[type="radio"] {
+    	display: none !important;
+    }
+    label {
+    	position: relative;
+    	font-weight:300;
+        z-index: 5;
+        border-radius: 15px;
+        padding:5px 16px;
+        margin:0;
+    }
+    input[type="radio"]:checked + label {
+    	background: $gray;
+        color:$white;
+    }
+}
+/* Checkbox style */
+.checkbox-item {
+    padding-bottom: 15px;
+    &__label{
+        position: relative;
+        font-weight:300;
+        z-index: 5;
+        padding-left: 20px;
+        z-index: 5;
+        &:before{
+            position: absolute;
+        	left: 0px;
+        	top: 4px;
+        	width: 13px;
+        	height: 13px;
+        	border: 1px solid $border;
+        	-webkit-border-radius: 2px;
+        	content: '';
+        	background: #fff;
+        }
+    }
+	&__input{
+        display: none;
+    }
+    &__input:checked + label::before {
+    	background: transparent;
+        border-color: transparent;
+        content:"\f14a";
+        color: $base;
+        font-family: 'FontAwesome';
+        top:0;
+    }
+}
+.input-group--no-border{
+    .input-group__input{
+        border:0;
+        height: 44px;
+        padding:0;
+        width:100%;
+        white-space: normal;
+        background: transparent;
+    }
+    .datepicker-time-input{
+        max-width: 70px;
+    }
+    textarea{
+        -webkit-appearance:none;
+        appearance:none;
+        min-height: 80px;
+        height: auto;
+        resize:none
+    }
+    .dashborad-select-box{
+        border:0;
+        .btn{
+            border:0;
+            border-radius: 0;
+            text-align: left;
+            &:hover,&:focus{
+                box-shadow: none;
+                background: transparent;
+            }
+        }
+    }
+}
+.datepicker-time-input + .bootstrap-datetimepicker-widget{
+    padding-left: 25px;
+    overflow-x: hidden;
+    .btn{
+        background: transparent;
+        color: $base;
+        border:0;
+        min-width: auto;
+        padding:0;
+        &:hover{
+            box-shadow: none;
+            border:0;
+            background: transparent;
+            color: $base;
+        }
+    }
+}
+.triplist-date-picker label{
+    padding-right: 4px;
+}
+/* -----------------------------------
+** End Form Element
+-------------------------------------*/

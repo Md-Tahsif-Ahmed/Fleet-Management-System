@@ -1,0 +1,24 @@
+@import "variables.scss";
+/* -----------------------------------
+** Page Layout
+-------------------------------------*/
+.main-content-outer{
+    padding-left: 250px;
+    transition: .3s;
+    @include breakpoint(max_sm) {
+        padding-left:0;
+    }
+    &__toggle{
+        padding-left: 58px;
+        @include breakpoint(max_sm) {
+            padding-left:0;
+        }
+    }
+
+}
+.main-content-inner--space{
+    padding:0 35px;
+    @include breakpoint(max_md){
+        padding:0;
+    }
+}

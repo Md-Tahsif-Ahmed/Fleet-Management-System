@@ -1,0 +1,156 @@
+/* -----------------------------------
+**  Task
+-------------------------------------*/
+.task-list-search-filter{
+    display: flex;
+    width:100%;
+    @include breakpoint(max_sm){
+        display: block;
+    }
+    .task-tabs{
+        border:1px solid $border;
+        border-radius: 100px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        @include breakpoint(max_sm){
+            display: inline-block;
+            float: right;
+        }
+    }
+    .nav-tabs>li {
+        margin-bottom: 0;
+
+        &>a{
+            margin:0;
+            border:0;
+            border-radius: 0;
+        }
+        &:first-child{
+            a{
+                border-radius: 100px 0 0 100px !important;
+                border-right:1px solid $border !important;
+            }
+        }
+        &:last-child{
+            a{
+                border-radius: 0 100px 100px 0 !important;
+                border-left:1px solid $border !important;
+            }
+        }
+    }
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:focus,
+    .nav-tabs>li.active>a:hover{
+        background: #D3D2D2;
+        border:0;
+    }
+    .actions-buttons-wrap{
+        margin-left: auto;
+    }
+}
+.task-dragable-wrap{
+    display: flex;
+    width: 100%;
+    @include breakpoint(max_lg){
+        flex-wrap: wrap;
+    }
+}
+.task-table{
+    border:1px solid $border;
+    border-radius: 5px;
+    width: 19%;
+    margin-right:1%;
+    background: $white;
+    @include breakpoint(max_lg){
+        width:32%;
+    }
+    @include breakpoint(max_xs){
+        width:49%;
+    }
+    &:last-child{
+        margin-right: 0;
+    }
+    &__header{
+        background: #F9F9F9;
+        border-bottom: 1px solid $border;
+        padding:20px 15px 10px 15px;
+        border-radius: 5px 5px 0 0;
+    }
+    &__body{
+        padding:10px;
+        min-height: 420px;
+    }
+
+}
+.drag-item{
+    border:1px solid $border;
+    border-radius: 5px;
+    padding:8px 10px 8px 10px;
+    margin-bottom: 10px;
+    &__heading{
+        margin-top: 0;
+    }
+}
+.task-agenda{
+    padding:20px 20px 50px 20px;
+    &__heading{
+        padding-bottom: 20px;
+    }
+
+}
+.agenda-item{
+    margin:0 20px 0 20px;
+    border-bottom: 1px solid $border;
+    .checkbox-item__input:checked + label::after{
+        position: absolute;
+        top:10px;
+        right:0;
+        width:90%;
+        width:calc(100% - 20px);
+        height: 1px;
+        content: '';
+        background: $black;
+    }
+}
+.task-agenda-wraper{
+    display: flex;
+    width: 100%;
+    clear: both;
+    @include breakpoint(max_xs){
+        display: block;
+    }
+    .task-agenda{
+        width: 65%;
+        margin-right: 2%;
+        @include breakpoint(max_xs){
+            display: block;
+            width:100%;
+            margin-bottom: 20px;
+            margin-right: 0;
+
+        }
+    }
+    .overdue-tasks{
+        width: 33%;
+        padding:20px;
+        @include breakpoint(max_xs){
+            display: block;
+            width:100%;
+            margin-right: 0;
+        }
+    }
+}
+.task-page-wrapper{
+    @include breakpoint(max_sm){
+        .leader-list-filter-actions{
+            display: block;
+        }
+        .actions-buttons-wrap{
+            display: block;
+            margin:10px 0;
+        }
+    }
+}
+/* -----------------------------------
+**  End Task
+-------------------------------------*/

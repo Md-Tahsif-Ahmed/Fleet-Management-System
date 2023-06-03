@@ -1,0 +1,34 @@
+/* -----------------------------------
+** Edit Leads Info
+-------------------------------------*/
+.edit-leads-info{
+    padding:20px;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    border-color: $border;
+    &__title{
+        margin:0;
+    }
+    @include breakpoint(max_md){
+        overflow-x: hidden;
+    }
+}
+.spouse-delete-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__image{
+        width:33px;
+    }
+    &__text-content{
+        padding-left: 12px;
+    }
+    &__delete-icon{
+        font-size: 20px;
+        display: inline-block;
+        cursor: pointer;
+    }
+}
+/* -----------------------------------
+** End Edit Leads Info
+-------------------------------------*/

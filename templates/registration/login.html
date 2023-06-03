@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Start Loading -->
+    <section class="loading-overlay">
+        <div class="Loading-Page">
+            <h2 class="loader">Loading...</h2>
+        </div>
+    </section>
+    <!-- End Loading  -->
+    <div class="vault-outer-wrapper">
+        <div class="login-wrap">
+            <div class="login-wrap__left">
+                <div class="flex-center c2b-login">
+                    <div>
+                        <div class="text-center pdb20">
+                            <h3 class="login-welcome-text">Sundarban Courier Service (Pvt.) Ltd</h3>
+                        </div>
+                        <form class="sign-form" method="post" action="{% url 'login' %}"> {% csrf_token %}
+                            <div class="sign-form__header">Login Form</div>
+                            <div class="sign-form__body">
+
+                                {% if form.errors %}
+                                    <p>Your username and password didn't match. Please try again.</p>
+                                {% endif %}
+
+                                {% if next %}
+                                    {% if user.is_authenticated %}
+                                        <p>Your account doesn't have access to this page. To proceed,
+                                            please login with an account that has access.</p>
+                                    {% else %}
+                                        <p>Please login to see this page.</p>
+                                    {% endif %}
+                                {% endif %}
+
+
+                                <div class="input-group input-group--border-bottom">
+                                    <label class="input-group__label">Username<span
+                                            class="input-group__require">*</span></label>
+                                    <input class="input-group__input" type="text" placeholder="Username.." name="username"/>
+                                </div>
+                                <div class="input-group input-group--border-bottom">
+                                    <label class="input-group__label">Password<span
+                                            class="input-group__require">*</span></label>
+                                    <input class="input-group__input" type="password" placeholder="Password.." name="password" />
+                                </div>
+                                <div class="input-checkbox pdt10">
+                                    <label>
+                                        <input type="checkbox" name="check"/> <span class="label-text">Remember me</span>
+                                    </label>
+                                </div>
+                                <div class="pdt10">
+                                    <button type="submit" class="btn io-btn wi100p">Login</button>
+{#                                    <input type="hidden" name="next" value="{{ next }}"/>#}
+                                    <div class="text-left">
+                                        <h6 class="f12"><a href="{% url 'password_reset' %}">Lost password?</a></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="login-wrap__image">
+                <img src="{% static 'trip/images/profile-bg.jpg' %}" alt="profile bg"/>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

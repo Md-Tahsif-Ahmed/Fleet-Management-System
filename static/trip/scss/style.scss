@@ -1,0 +1,69 @@
+
+/*------------------------------------------------------------------
+	Template Name:	Venture Dashboard
+    Template URI:
+    Description :: HTML Admin Template
+    Author:venturenxt
+    Author URI:https://themeforest.net/user/venturenxt
+    License:GPL V2 or Later
+    License URI: http://www.gnu.org/licenses/gpl-2.0.html
+    Version: 1.0
+    */
+
+    /*
+    ========================================================================
+    Index
+    ------------------------------------------------------------------------
+
+    # -  1.0 -Global Css
+    # -  2.0 - Start Padding Space
+    # -  3.0 - Start Margin Space
+    # -  4.0 - Page Layout
+    # -  5.0 - Form Element
+    # -  6.0 - Button Style
+    # -  7.0 - Sidebar
+    # -  8.0 - Collasp panel
+    # -  9.0 - Business properties
+    # - 10.0 - Tabs
+    # - 11.0 - Progress Status
+    # - 12.0 - Circle Chart
+    # - 13.0 - Progress terget
+    # - 14.0 - Table
+    # - 15.0 - Timeline
+    # - 16.0 - Edit Leads Info
+    # - 17.0 - Advisor history
+    # - 18.0 - Leads List
+    # - 19.0 - Calender 
+    # - 20.0 - Client
+    # - 21.0 - Task
+    # - 21.0 - Notification
+    # - 22.0 - Preloader
+    */
+@import "base/mixin.scss"; // Mixin scss
+@import "base/global.scss"; // Global Classes scss
+@import "base/spacing.scss"; // Spacing Classes scss
+@import "base/page_layout.scss"; // Page layout Classes scss
+
+@import "module/_form-element.scss"; // form-element scss
+@import "module/_button.scss"; // btn scss
+@import "module/_header.scss"; // Header Classes scss
+@import "module/_sidebar.scss"; // Sidebar Classes scss
+@import "module/_collasp-panel.scss"; // Panel Classes scss
+@import "module/_business-properties.scss"; // Business properties scss
+@import "module/_tabs.scss"; // Lead Deferent scss
+@import "module/_progress-stats.scss"; // Lead Deferent scss
+@import "module/_circle-chart.scss"; // Lead Deferent scss
+@import "module/_progress-terget.scss"; // Lead Deferent scss
+@import "module/_table.scss"; // Lead Deferent scss
+@import "module/_timeline.scss"; // Timeline scss
+@import "module/_edit-leads-info.scss"; // Edit Clent info scss
+@import "module/_advisor-history.scss"; //Advisor History info scss
+@import "module/_leads-list.scss"; //Advisor History info scss
+@import "module/_calendar.scss"; //Calender scss
+@import "module/_client.scss"; //Client scss
+@import "module/_task.scss"; //task scss
+@import "module/_notification.scss"; //task scss
+@import "module/_login.scss"; //task scss
+@import "module/_user-details.scss"; //task scss
+@import "module/_preloader.scss"; //task scss
+@import "module/_jquery-confirm.scss"; //task scss

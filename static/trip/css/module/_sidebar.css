@@ -1,0 +1,266 @@
+/* -----------------------------------
+** Global Css
+-------------------------------------*/
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #7e7e7e;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  font-weight: 400;
+  color: #7e7e7e;
+}
+
+a:hover, a:focus, a.active {
+  text-decoration: none;
+  outline: none;
+  color: #bba779;
+}
+
+input {
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+label {
+  font-weight: normal;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="url"],
+input[type="search"],
+input[type="text"],
+input[type="email"],
+input[type="time"],
+input[type="text"],
+.form-control, textarea, textarea.form-control {
+  height: 50px;
+  border: 1px solid #E0E0E0;
+  border-radius: 0;
+  box-shadow: none;
+  padding-left: 20px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="time"]:focus,
+input[type="text"]:focus,
+.form-control:focus, textarea:focus, textarea.form-control:focus {
+  box-shadow: none;
+  outline: 0;
+  border-color: #bba779;
+}
+
+input[type="submit"]:focus {
+  outline: 0;
+}
+
+textarea.form-control, textarea {
+  min-height: 126px;
+  padding-top: 14px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.bg-tr {
+  background: transparent;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  text-transform: uppercase;
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.checkbox-group label {
+  margin-bottom: 10px;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.checkbox-group > div {
+  display: flex;
+}
+
+.checkbox-group > div label {
+  padding-left: 4px;
+}
+
+/*  Heading Tag
+-------------------*/
+h1, h2, h3, h4, h5, h6 {
+  color: #000000;
+  font-weight: 300;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: inherit;
+  font-weight: inherit;
+}
+
+h4 {
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 13px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.img-round {
+  border-radius: 3px;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-border {
+  border: 0 !important;
+}
+
+.fix {
+  overflow: hidden;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 25px;
+}
+
+.clear {
+  clear: both;
+}
+
+.base-color {
+  color: #bba779;
+}
+
+.cyan-color {
+  color: #437CBF;
+}
+
+.yellow-color {
+  color: #EAC844;
+}
+
+.base-bg {
+  background: #bba779;
+  color: #fff;
+}
+
+.base-bg h1, .base-bg h2, .base-bg h3, .base-bg h4, .base-bg h5, .base-bg h6, .base-bg a, .base-bg p, .base-bg span {
+  color: #fff;
+}
+
+.base-bg .kal-button:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #bba779;
+}
+
+.black-bg {
+  background: #262626;
+}
+
+.base-border {
+  border-color: #bba779;
+}
+
+.white-bg {
+  background: #fff;
+}
+
+.white-bg .coache-single-intro {
+  border: 1px solid #E0E0E0;
+}
+
+.white-bg .coache-single-intro:hover {
+  border-color: transparent;
+}
+
+.cyan-bg {
+  background: #437CBF;
+  color: #fff;
+}
+
+.cyan-bg h1, .cyan-bg h2, .cyan-bg h3, .cyan-bg h4, .cyan-bg h5, .cyan-bg h6, .cyan-bg a, .cyan-bg p, .cyan-bg span {
+  color: #fff;
+}
+
+.cyan-bg .kal-button:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #bba779;
+}
+
+hr {
+  border-color: #E0E0E0;
+}
+
+.pr {
+  position: relative;
+}
+
+.pa {
+  position: absolute;
+}
+
+.small-text {
+  font-size: 10px;
+}
+
+/* -----------------------------------
+** Sidebar
+-------------------------------------*/
+.left-sidebar {
+  background: #313439;
+  color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+  width: 250px;
+  top: 0;
+  position: fixed;
+  height: 100%;
+  height: 100vh;
+}
+
+/* -----------------------------------
+** End Sidebar
+-------------------------------------*/

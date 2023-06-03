@@ -1,0 +1,162 @@
+/* -----------------------------------
+** Calender
+-------------------------------------*/
+.fc-event {
+    position: relative;
+    display: block;
+    font-size: 10px;
+    line-height: 14px;
+    border-radius: 3px;
+    border: 0;
+    font-weight: 400;
+    background: #9FE1F0;
+    color:rgba(0,0,0,0.54);
+    padding: 4px 12px;
+    &:hover{
+        color: inherit;
+    }
+}
+.fc-highlight{
+    opacity: 1;
+    background: #C1AD7E;
+    opacity: .15;
+}
+.fc-body{
+    background: $white;
+}
+.fc-toolbar .fc-prev-button{
+    margin-right: 10px;
+}
+.fc-toolbar .fc-prev-button, .fc-toolbar .fc-next-button{
+    background: transparent;
+    border-radius: 100% !important;
+    height: 42px;
+    width:42px;
+    line-height: 42px;
+    border:1px solid $border;
+    color: $bcolor;
+    box-shadow: none;
+    background: transparent;
+
+}
+.fc-toolbar .fc-today-button{
+	border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 100px;
+    width:80px;
+    padding:8px 10px;
+    height: 40px;
+    box-shadow: none;
+    background: transparent;
+    color: $bcolor;
+}
+.fc-right{
+    .fc-button-group{
+        height: 40px;
+        // width: 212px;
+        border: 1px solid $border;;
+        border-radius: 100px;
+    }
+    button{
+        height: 40px;
+        border-width: 0 1px 0 1px;
+        border-color: $border;
+        border-style: solid;
+        border-radius: 0;
+        box-shadow: none;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin:0 !important;
+        &:focus{
+            outline: 0;
+        }
+        &:first-child{
+            border-radius: 100px 0 0 100px;
+            border:0;
+        }
+        &:last-child{
+            border-radius:0 100px 100px 0 ;
+            border:0;
+        }
+    }
+    .fc-state-active{
+        background: rgba(211, 210, 210, .21);
+        box-shadow: none;
+        border-color: $border;
+    }
+}
+.fc-header-toolbar{
+    h2{
+        font-size: 16px;
+        font-weight: 400;
+        color: $bcolor;
+    }
+}
+.fc-widget-header thead .fc-day-header{
+    padding:22px 4px 15px 4px;
+    font-weight: 300;
+}
+.fc-basic-view .fc-day-number, .fc-basic-view .fc-week-number{
+    padding:9px;
+}
+.calender-wraper{
+    .modal-body .table{
+        tr{
+            td{
+                &:first-child{
+                    min-width: 100px;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+    .modal-dialog{
+        // border:2px solid $border;
+        border-radius: 4px;
+    }
+    @include breakpoint(min_md){
+        .modal-dialog{
+            width: 410px;
+        }
+    }
+}
+.calender-footer-icons{
+    &__delete,&__edit{
+        display: inline-block;
+        &:hover{
+            color: $l-red;
+        }
+    }
+    &__edit{
+        font-size: 16px;
+        margin-right: 12px;
+    }
+    &__delete{
+        font-size: 22px;
+    }
+}
+.add-new-event{
+    @include breakpoint(min_md){
+        .modal-dialog{
+            width: 410px;
+        }
+    }
+    .dashboard-nav-tabs.nav-tabs{
+        li{
+            &:first-child{
+                padding-left: 20px;
+            }
+        }
+    }
+}
+@include breakpoint(max_sm){
+    .fc-toolbar .fc-left,.fc-toolbar .fc-right, .fc-toolbar .fc-center{
+        float: none;
+        display: block;
+        width:100%;
+        overflow: hidden;
+        padding-bottom: 10px;
+    }
+}
+/* -----------------------------------
+**End Calender
+-------------------------------------*/

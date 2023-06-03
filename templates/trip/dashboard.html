@@ -1,0 +1,144 @@
+{% extends 'sidebar.html' %}
+
+{% load static %}
+
+
+{% block main_content %}
+    <div class="main-content-outer">
+        <div class="main-content-inner main-content-inner--space">
+            <section class="pdb50">
+
+                <div class="pdt50">
+                    <h2 class="page-title mb20">Dashboard</h2>
+                </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-5">
+                        <ul class="list-group">
+                            <h3>Last 10 Trips Left From Dhaka</h3>
+                            {% for trip in last_trips_left_from_dhaka %}
+                                <li class="list-group-item">{{ trip.vehicle }} To {{ trip.destination }}
+                                    <span class="badge">{{ trip.leaving_time_from_dhaka }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5">
+                        <ul class="list-group">
+                            <h3>Last Scheduled 10 Trips</h3>
+                            {% for trip in last_scheduled_trips %}
+                                <li class="list-group-item">{{ trip.vehicle }} To {{ trip.destination }}
+                                    <span class="badge">{{ trip.created_at }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-5">
+                        <canvas id="avg_trip_times"></canvas>
+                    </div>
+
+                    <div class="col-md-5">
+                        <canvas id="vehicles_in_maintenance"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
+                {% block javascript %}
+                    <script>
+                        var avg_trip_times = document.getElementById("avg_trip_times");
+                        var chart3 = new Chart(avg_trip_times, {
+                            type: 'bar',
+                            data: {
+                                datasets: [{
+                                    label: 'Average Hours',
+                                    data: [{% for route, time in trip_times.items %}'{{ time }}', {% endfor %}],
+                                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+                                }],
+                                labels: [{% for route in route_list %}'{{ route }}', {% endfor %}]
+                            },
+                            options: {
+                                title: {
+                                    display: true,
+                                    text: 'Average Trip Times'
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Hour'
+                                        },
+                                        ticks: {
+                                            suggestedMax : 24,
+                                            min : 0
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Destination'
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+                        var vehicles_in_maintenance = document.getElementById("vehicles_in_maintenance");
+                        var chart4 = new Chart(vehicles_in_maintenance, {
+                            type: 'bar',
+                            data: {
+                                datasets: [{
+                                    label: 'Vehicles Count',
+                                    data: [{% for week_day, count in vehicles_in_maintenance.items %}'{{ count }}', {% endfor %}],
+                                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+                                }],
+                                labels: [{% for date, count in vehicles_in_maintenance.items %}'{{ date }}', {% endfor %}]
+                            },
+                            options: {
+                                title: {
+                                    display: true,
+                                    text: 'Vehicles In Maintenance'
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            suggestedMax : 30,
+                                            min : 0
+                                        },
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Vehicle Count'
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Date'
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+
+
+
+                    </script>
+                {% endblock javascript %}
+
+
+            </section>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+/* -----------------------------------
+**  Table
+-------------------------------------*/
+.table--no-border > tbody > tr > td,
+.table--no-border > tbody > tr > th,
+.table--no-border > tfoot > tr > td,
+.table--no-border > tfoot > tr > th,
+.table--no-border > thead > tr > td,
+.table--no-border > thead > tr > th{
+    border:0;
+}
+.table > thead > tr > td{
+    padding:10px 8px;
+}
+.vehiclesdriver-table-wrap{
+    overflow-x: visible;
+}
+.table:not(.table--no-border){
+    border-radius: 4px;
+    margin:0;
+    & > thead{
+        background: $ash;
+        .checkbox-item__label{
+            margin-bottom: 0;
+        }
+        & > tr > th{
+            font-weight: 700;
+            border-bottom: 0;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            padding: 20px 12px 10px 12px;
+        }
+    }
+    & > tbody{
+        background: $white;
+        & > tr > td{
+            padding: 7px 12px;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        .checkbox-item{
+            margin-top: -9px;
+            padding:0;
+        }
+    }
+}
+.table-responsive{
+    border-radius: 8px;
+    border:1px solid $border;
+    width:100%;
+}
+
+.triplist-table,.reports-table{
+    &.table:not(.table--no-border) > tbody > tr > td{
+        padding:8px 3px ;
+        font-size: 14px;
+        letter-spacing: -.8px;
+        word-spacing: -1px;
+    }
+    &.table:not(.table--no-border) > thead > tr > th{
+        padding:8px 3px;
+        font-size:12px;
+        font-weight: 700;
+        letter-spacing: -1px;
+    }
+}
+.pagination>li>a, .pagination>li>span{
+    color: $base;
+}
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover{
+    color: $base;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+    background: $base;
+    border-color: $base;
+}
+/* -----------------------------------
+**  End Table
+-------------------------------------*/

@@ -1,0 +1,72 @@
+/* -----------------------------------
+** Collasp panel
+-------------------------------------*/
+.panel-heading{
+    background: #F9F9F9;
+    padding:0;
+}
+.panel-title{
+    font-size: 14px;
+    &__icon{
+        font-size: 16px;
+        transition: .3s;
+    }
+    a{
+        padding:12px 15px;
+        display: block;
+        &:hover,&:focus{
+            color: inherit;
+        }
+        &.collapsed{
+            .panel-title__icon{
+                transform: rotate(-180deg);
+            }
+        }
+    }
+}
+
+.panel{
+    border:1px solid $border;
+    box-shadow: none;
+
+}
+.panel-group .panel{
+    margin-bottom: 15px;
+}
+.panel-group .panel + .panel{
+    margin-top: 0;
+}
+.panel-group .panel-footer,.panel-footer{
+    border-top:1px solid $border;
+    background: $white;
+    text-align: center;
+    padding:12px 15px;
+}
+.panel-body{
+    padding: 22px 15px;
+    &__element{
+        padding-bottom: 22px;
+        &:last-child{
+            padding-bottom: 0;
+        }
+    }
+    &__element-title{
+        margin-bottom:7px;
+    }
+    &__icon{
+        height: 30px;
+        width:30px;
+        border-radius: 100%;
+        text-align: center;
+        line-height: 28px;
+        border:1px solid $border;
+        display: inline-block;
+    }
+    &__text-content > span{
+        padding-bottom: 7px;
+        display: block;
+    }
+}
+/* -----------------------------------
+** End Collasp panel
+-------------------------------------*/

@@ -1,0 +1,47 @@
+/* -------------------------------------------
+   Preloader
+----------------------------------------------*/
+.loading-overlay {
+  background: #FFF;
+  color: #424242;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 111111;
+}
+
+.loader {
+  margin: 20% auto;
+  font-size: 6px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(194, 193, 193, 0.5);
+  border-right: 1.1em solid rgba(199, 197, 197, 0.5);
+  border-bottom: 1.1em solid rgba(203, 203, 203, 0.5);
+  border-left: 1em solid $base;
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* -------------------------------------------
+   End Preloader
+----------------------------------------------*/

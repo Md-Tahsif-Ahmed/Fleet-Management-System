@@ -1,0 +1,78 @@
+/* -----------------------------------
+** Client
+-------------------------------------*/
+.commissions{
+    &__icon-delete, &__icon-edit{
+        opacity: 0;
+        &:hover{
+            color:$l-red;
+        }
+    }
+    &__icon-delete{
+        font-size: 20px;
+        margin-right: 6px;
+        transition: .3s;
+    }
+    &__icon-edit{
+        font-size: 16px;
+        transition: .6;
+    }
+    .table>tbody>tr{
+        &:hover{
+            .commissions__icon-delete,
+            .commissions__icon-edit{
+                opacity: 1;
+            }
+        }
+        &>td{
+            padding: 12px 8px;
+        }
+    }
+    .add-commissions-wrap{
+        position: relative;
+        top:0;
+    }
+}
+.policy-item-panel{
+    border-width:1px 0 0 0;
+    margin-bottom: 0;
+    padding:2px 0;
+    border-radius: 0;
+    .panel-heading{
+        border:0;
+        background: transparent;
+        padding-bottom: 0;
+    }
+    .table{
+        & > tbody{
+            & > tr{
+                & > td{
+                    white-space: normal;
+                    &:first-child{
+                        //white-space: nowrap;
+                        min-width: 116px;
+                    }
+                }
+            }
+        }
+    }
+}
+.policy-pdf{
+    display: table;
+    &__icon{
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 20px;
+    }
+    &__text-content{
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 10px;
+    }
+    &__name{
+        margin:0;
+    }
+}
+/* -----------------------------------
+** End Client
+-------------------------------------*/

@@ -1,0 +1,154 @@
+{% extends 'sidebar.html' %}
+
+
+{% load static %}
+
+
+{% block main_content %}
+
+
+    <div class="main-content-outer">
+        <div class="main-content-inner main-content-inner--space">
+            <section class="pdb50">
+
+
+                <div class="pdt50">
+                    <h2 class="page-title mb20">Vehicles Driver</h2>
+                </div>
+                <form class="search-form" method="get">
+                    <div class="dis-flex-md align-center">
+                        <i class="search-form__icon ion-ios-search large-text pdr25"></i>
+                        <div class="input-group input-group--no-border">
+                            <input name='q' type="text" class="input-group__input"
+                                   placeholder="Search Vehicle or Driver" value="{{ request.GET.q }}"/>
+                        </div>
+                    </div>
+{#                </form>#}
+{##}
+                <div class="pull-right no-border">
+                    <div class="leader-list-filter-actions dis-inblock pdl15">
+
+                        <select name="type" class="selectpicker dashborad-select-box">
+                            <option value="">All Types</option>
+                            {% for k, v in VEHICLE_TYPES.items %}
+                                <option value="{{ k }}" {% if request.GET.type == k|stringformat:'s' %}selected{% endif %}>{{ v }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="condition" class="selectpicker dashborad-select-box">
+                            <option value="">All Conditions</option>
+                            {% for k, v in VEHICLE_CONDITIONS.items %}
+                                <option value="{{ k }}" {% if request.GET.condition == k|stringformat:'s' %}selected{% endif %}>{{ v }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">
+                        Filter
+                    </button>
+                </div>
+                </form>
+            </section>
+        </div>
+
+
+        <div class="container-fluid">
+            <div class="table-responsive vehiclesdriver-table-wrap">
+                <table class="table vehiclesdriver-table">
+                    <thead>
+                    <tr>
+                        <th>Vehicle Type</th>
+                        <th>Vehicle Number</th>
+                        <th>Driver</th>
+                        <th>Update</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for vehicle in vehicles %}
+                            <form method="post">{% csrf_token %}
+                                <tr>
+                                    <td>{{ vehicle.get_type }}</td>
+                                    <td><i class="fa fa-circle light-green small-text pdr10"></i>{{ vehicle.number }}
+                                    </td>
+                                    <td>
+                                        <div class="drivertable-driver-name">
+                                            <span>{{ vehicle.driver.name }}</span>
+                                        </div>
+                                        <div class="input-group drivertable-driver-select">
+                                            <div class="input-group__select-wrap">
+                                                <select name="driver" class="form-control">
+                                                    <option value="{{ vehicle.driver.id }}">{{ vehicle.driver.name }}</option>
+                                                    {% for driver in extra_drivers %}
+                                                        <option value="{{ driver.id }}">{{ driver.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="triplist-actions-buttons">
+                                            <div>
+                                                <button type="submit" class="btn btn--with-icon btn--small ml-auto triplist-cancle-button btn--danger mb5 button-hide">Cancle</button>
+                                            </div>
+                                            <button type="button"  data-toggle="modal" data-target="#mod{{ vehicle.id }}"
+                                                    class="btn btn--with-icon btn--small ml-auto triplist-save-button button-hide btn--success">Save
+                                            </button>
+
+                                            <button type="submit" class="btn btn--with-icon btn--small ml-auto triplist-update-button">update</button>
+                                        </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="mod{{ vehicle.id }}" tabindex="-1" role="dialog">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Confirmation</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                Are you Sure?
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn--with-icon btn--small btn--danger" data-dismiss="modal">NO</button>
+                                                  <button type="submit" name="save" value="{{ vehicle.id }}"
+                                                          class="btn btn--with-icon btn--small triplist-save-button btn--success">YES
+                                                  </button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </form>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+
+            {% if vehicles.has_other_pages %}
+                <ul class="pagination">
+                    {% if vehicles.has_previous %}
+                        <li><a href="?page={{ vehicles.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in vehicles.paginator.page_range %}
+                        {% if vehicles.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if vehicles.has_next %}
+                        <li><a href="?page={{ vehicles.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+
+        </div>
+
+    </div>
+{% endblock %}

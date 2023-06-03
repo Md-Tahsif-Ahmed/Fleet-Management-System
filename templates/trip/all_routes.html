@@ -1,0 +1,253 @@
+{% extends 'sidebar.html' %}
+
+
+{% load static %}
+
+
+{% block main_content %}
+
+
+    <div class="main-content-outer">
+        <div class="main-content-inner main-content-inner--space">
+            <section class="pdb50">
+
+
+                <div class="pdt50">
+                    <h2 class="page-title mb20">Routes</h2>
+                </div>
+                 <form class="search-form" method="get">
+                    <div class="dis-flex-md align-center">
+                        <i class="search-form__icon ion-ios-search large-text pdr25"></i>
+                        <div class="input-group input-group--no-border">
+                            <input name='q' type="text" class="input-group__input"
+                                   placeholder="Search Routes" value="{{ request.GET.q }}" />
+                        </div>
+{#                        <a href="#" class="btn btn--with-icon btn--medium ml-auto"><i#}
+{#                                class="ion-android-add pdr10 btn__icon"></i>Add Trip </a>#}
+                    </div>
+{#                </form>#}
+                <div method="get" class="pull-right no-border">
+                    <div class="leader-list-filter-actions dis-inblock pdl15">
+                        <select name="type" class="selectpicker dashborad-select-box">
+                            <option value="">All Types</option>
+                            {% for k, v in ROUTE_TYPES.items %}
+                                <option value="{{ k }}" {% if request.GET.type == k|stringformat:'s' %}selected{% endif %}>{{ v }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="condition" class="selectpicker dashborad-select-box">
+                            <option value="">All Conditions</option>
+                            <option value="1" {% if request.GET.condition == "1" %}selected{% endif %}>Enabled</option>
+                            <option value="0" {% if request.GET.condition == "0" %}selected{% endif %}>Disabled</option>
+                        </select>
+{#                        <select name="condition" class="selectpicker dashborad-select-box">#}
+{#                            <option value="">All Conditions</option>#}
+{#                            {% for k, v in ROUTE_CONDITIONS.items %}#}
+{#                                <option value="{{ k }}" {% if request.GET.condition == k|stringformat:'s' %}selected{% endif %}>{{ v }}</option>#}
+{#                            {% endfor %}#}
+{#                        </select>#}
+                    </div>
+                    <button type="submit" class="btn">
+                        Filter
+                    </button>
+                </div>
+                 </form>
+{#                <div class="actions-buttons-wrap dis-inblock pull-right no-border">#}
+{#                    <span class="pdr20">1 of 1</span>#}
+{#                    <button class="icon-circle icon-circle--large">#}
+{#                        <i class="fa fa-angle-left"></i>#}
+{#                    </button>#}
+{#                    <button class="icon-circle icon-circle--large">#}
+{#                        <i class="fa fa-angle-right"></i>#}
+{#                    </button>#}
+{#                </div>#}
+            </section>
+        </div>
+
+        <div class="container-fluid">
+            <div class="table-responsive">
+                <table class="table routes-table">
+                    <thead>
+                    <tr>
+                        {#                                <th>#}
+                        {#                                    <div class="checkbox-item">#}
+                        {#                                        <input class="checkbox-item__input" type="checkbox" id="checkbox-all"/>#}
+                        {#                                        <label class="checkbox-item__label" for="checkbox-all"></label>#}
+                        {#                                    </div>#}
+                        {#                                </th>#}
+
+                        <th>Route</th>
+                        <th>Type</th>
+                        <th>Max Trip</th>
+                        <th>Reserved</th>
+                        <th>Condition</th>
+                        <th>Change Condition</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for route in routes %}
+                        <form method="post">{% csrf_token %}
+
+                            <tr>
+                                <td><i class="fa fa-circle light-green small-text pdr10"></i>{{ route.name }}</td>
+                                <td>{{ route.get_type }}</td>
+                                <td>
+                                    {{ route.max_trip }}
+                                    <button class="max-trip-setting-button" type="button" value="{{ route.id }}" data-toggle="modal"
+                                            name="remove" data-target="#change_max_trip{{ route.id }}">
+                                        <i class="fa fa-wrench close"></i>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="change_max_trip{{ route.id }}" tabindex="-1" role="dialog">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Select Max Trip</h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            <select name="max_trip_value" class="form-control">
+                                                {% for i in max_length_of_max_trip %}
+                                                    <option value="{{ i }}">{{ i }}</option>
+                                                {% endfor %}
+                                            </select>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn--with-icon btn--small btn--danger" data-dismiss="modal">Cancel</button>
+                                              <button type="submit" name="change_max_trip" value="{{ route.id }}"
+                                                      class="btn btn--with-icon btn--small btn--success">Change
+                                              </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- End Modal -->
+                                </td>
+                                <td>
+                                    {% if route.reserved_for %}
+                                        {{ route.reserved_for.number }}
+                                        <button type="button" class="close routes-reserved-close" value="{{ route.id }}" data-toggle="modal"
+                                                name="remove" data-target="#remove{{ route.id }}">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="remove{{ route.id }}" tabindex="-1" role="dialog">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Confirmation</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                Are you Sure?
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn--with-icon btn--small btn--danger" data-dismiss="modal">NO</button>
+                                                  <button type="submit" name="remove" value="{{ route.id }}"
+                                                          class="btn btn--with-icon btn--small btn--success">YES
+                                                  </button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <!-- End Modal -->
+
+                                    {% elif not route.is_disabled %}
+                                        <button type="button"  value="{{ route.id }}" data-toggle="modal" data-target="#reserve{{ route.id }}"
+                                            class="btn btn--with-icon btn--small ml-auto">Reserve
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="reserve{{ route.id }}" tabindex="-1" role="dialog">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Select Vehicle</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <select name="vehicle" class="form-control">
+                                                    <option value="">No Vehicle Selected</option>
+                                                    {% for vehicle in vehicles %}
+                                                        <option value="{{ vehicle.id }}">{{ vehicle.number }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn--with-icon btn--small btn--danger" data-dismiss="modal">Cancel</button>
+                                                  <button type="submit" name="reserve" value="{{ route.id }}"
+                                                          class="btn btn--with-icon btn--small btn--success">Reserve
+                                                  </button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <!-- End Modal -->
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                    {% if route.is_disabled %}Disabled{% else %}Enabled{% endif %}
+                                </td>
+                                <td>
+                                    <button type="button"  value="{{ route.id }}" data-toggle="modal" data-target="#modal{{ route.id }}"
+                                            class="btn btn--with-icon btn--small ml-auto">
+                                        {% if route.is_disabled %}Enable{% else %}Disable{% endif %}
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{ route.id }}" tabindex="-1" role="dialog">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Confirmation</h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            Are you Sure?
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn--with-icon btn--small btn--danger" data-dismiss="modal">NO</button>
+                                              <button type="submit" name="save" value="{{ route.id }}"
+                                                      class="btn btn--with-icon btn--small btn--success">YES
+                                              </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </form>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+
+            {% if routes.has_other_pages %}
+                <ul class="pagination">
+                    {% if routes.has_previous %}
+                        <li><a href="?page={{ routes.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in routes.paginator.page_range %}
+                        {% if routes.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if routes.has_next %}
+                        <li><a href="?page={{ routes.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+
+
+        </div>
+        </section>
+    </div>
+    </div>
+{% endblock %}

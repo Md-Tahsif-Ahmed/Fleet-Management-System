@@ -1,0 +1,240 @@
+/* -----------------------------------
+** Sidebar
+-------------------------------------*/
+.sidebar {
+    background: #313439;
+    color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    width: 250px;
+    top: 0;
+    position: fixed;
+    height: 100%;
+    z-index: 10;
+    height: 100vh;
+
+    @include breakpoint(max_md){
+        transition: .3s;
+    }
+    &__inner{
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x:hidden;
+    }
+    @include breakpoint(max_sm) {
+        left:-250px;
+    }
+    .tv-short{
+        display: none;
+    }
+    &__humbarger{
+    	height: 39px;
+    	width: 35px;
+    	border-radius:0 5px 5px 0;
+    	background-color: #313439;
+        position: absolute;
+        left:100%;
+        z-index: 10;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        top:10px;
+        @include breakpoint(max_sm) {
+            top:5px;
+        }
+        @media(min-width: 768px){
+            display: none;
+        }
+        span{
+            display: block;
+            width:10px;
+            background: $white;
+            height: 1px;
+            margin:2px 0;
+
+        }
+    }
+    &__toggle{
+        @include breakpoint(min_sm) {
+            width:58px;
+
+            .user-profile__name,.user-profile__designation{
+                margin: 0;
+                height: 0;
+                opacity: 0;
+            }
+            .tv-large{
+                display: none !important;
+            }
+            .tv-short{
+                display: block !important;
+            }
+            .menu-accordion{
+                .menu-text{
+                    display: none;
+                }
+            }
+            .has-submenu{
+                &:after{
+                    display: none;
+                }
+            }
+            .sidebar-menu__title {
+                padding-left: 8px;
+            }
+            .user-profile__avater{
+                max-width: 45px;
+            }
+            .user-profile{
+                margin-top: 65px;
+            }
+            .sidebar-menu{
+                padding-top: 0;
+            }
+        }
+        @include breakpoint(max_sm) {
+            left:0px;
+        }
+    }
+}
+
+.desktop-logo {
+    background: #313439;
+    font-size: 18px;
+    padding: 10px;
+    //border-bottom: 1px solid $border;
+    position: absolute;
+    float: left;
+    text-align: center;
+    width: 100%;
+    z-index: 9;
+    top: 0;
+    letter-spacing: 1px;
+    a {
+        color: $base;
+        font-weight: 800;
+        font-family: $rb;
+        i {
+            color: #003c70;
+            font-size: 22px;
+            position: relative;
+            top: 3px;
+        }
+        &:hover,&focus{
+            color: #FFF;
+            text-decoration: none;
+        }
+    }
+    .tv-large{
+        //white-space: nowrap;
+    }
+
+}
+.user-profile {
+    min-height: 50px;
+    padding: 5px 2px;
+    position: relative;
+    transition: 0.3s;
+    overflow: hidden;
+    &__avater {
+        border: 2px solid #fff;
+        max-width: 65px;
+        transition: .3s;
+    }
+    &__photo {
+        margin-top: 2px;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+    &__name,&__designation{
+        transition: .3s;
+        white-space: nowrap;
+    }
+}
+.sidebar-menu ul .dropdown {
+    overflow: hidden;
+    display: none;
+    padding-left: 40px;
+    background: #000;
+    margin-top: 9px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    li{
+        padding:4px 0;
+    }
+}
+
+.sidebar-menu {
+  overflow: auto; 
+  position: relative;
+  li{
+      padding:8px 0;
+      a{
+          padding:0 18px;
+          font-size: 14px;
+          line-height: 29px;
+          color:$base;
+          position: relative;
+          &:before{
+              position: absolute;
+              left:0;
+              right:0;
+              height:29px;
+              width: 3px;
+              left:0;
+              top:0;
+              content: '';
+              background: $base;
+              opacity: 0;
+          }
+         &.active{
+             color: $white;
+             &:before{
+                 opacity: 1;
+             }
+         }
+          i{
+
+          }
+          &:hover,&:focus{
+              background: transparent;
+              color: $white;
+            //   &:before{
+            //       opacity: 1;
+            //   }
+          }
+          &.has-submenu{
+              position: relative;
+              &:after{
+                  content:"\f107";
+                  float:right;
+              }
+          }
+      }
+  }
+  &__icon{
+      font-size: 18px;
+      width:40px;
+  }
+  &__title{
+      padding-left: 20px;
+      font-weight: 700;
+      color: $white;
+      font-family: $rb;
+  }
+}
+
+ul.menu-accordion {
+  list-style: none;
+  padding: 0;
+}
+
+ul.menu-accordion .dropdown {
+  overflow: hidden;
+  display: none;
+}
+/* -----------------------------------
+** End Sidebar
+-------------------------------------*/

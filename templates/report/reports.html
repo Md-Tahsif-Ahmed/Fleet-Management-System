@@ -1,0 +1,163 @@
+{% extends 'sidebar.html' %}
+
+{% load static %}
+
+{% block main_content %}
+
+    <div class="main-content-outer">
+        <div class="main-content-inner main-content-inner--space">
+            <section class="pdb50">
+
+                <div class="pdt50">
+                    <h2 class="page-title mb20">Reports</h2>
+                </div>
+
+
+                <form class="search-form report-form" method="get">
+                    <div class="dis-flex-md align-center">
+                        <i class="search-form__icon ion-ios-search large-text pdr25"></i>
+                        <div class="input-group input-group--no-border">
+                            <input name='q' type="text" class="input-group__input"
+                                   placeholder="Search Anything" value="{{ request.GET.q }}"/>
+                        </div>
+                    </div>
+                <br>
+{#                </form>#}
+{##}
+                <div class="pull-right no-border">
+                    <div class="date-range-selector mb10">
+                        <input name="date_range" class="date-range-selector__input daterange-input" id="date-picker"
+                               type="text" data-startDate="{{ start_date }}" data-endDate="{{ end_date }}"
+                               data-openPosition="right"/>
+                        <label for="date-picker"
+                               class="ion-ios-calendar-outline date-range-selector__calender"></label>
+                        <span class="date-range-selector__delete"><span class="ion-ios-close-empty"></span></span>
+                    </div>
+
+                    <div class="eader-list-filter-actions dis-inblock mb10">
+
+
+
+                        <select name="vehicle_id" class="selectpicker dashborad-select-box">
+                            <option value="">All Vehicles</option>
+                            {% for v in VEHICLES %}
+                                <option value="{{ v.id }}"
+                                        {% if request.GET.vehicle_id == v.id|stringformat:'s' %}selected{% endif %}>{{ v.number }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <select name="vehicle_type" class="selectpicker dashborad-select-box">
+                            <option value="">All Vehicle Types</option>
+                            {% for k, v in VEHICLE_TYPES.items %}
+                                <option value="{{ k }}"
+                                        {% if request.GET.vehicle_type == k|stringformat:'s' %}selected{% endif %}>{{ v }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <select name="driver_id" class="selectpicker dashborad-select-box">
+                            <option value="">All Drivers</option>
+                            {% for d in DRIVERS %}
+                                <option value="{{ d.id }}"
+                                        {% if request.GET.driver_id == d.id|stringformat:'s' %}selected{% endif %}>{{ d.name }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <select name="destination" class="selectpicker dashborad-select-box">
+                            <option value="">All Destinations</option>
+                            {% for d in DESTINATIONS %}
+                                <option value="{{ d.id }}"
+                                        {% if request.GET.destination == d.id|stringformat:'s' %}selected{% endif %}>{{ d.name }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <select name="route_type" class="selectpicker dashborad-select-box">
+                            <option value="">All Route Types</option>
+                            {% for k, v in ROUTE_TYPES.items %}
+                                <option value="{{ k }}"
+                                        {% if request.GET.route_type == k|stringformat:'s' %}selected{% endif %}>{{ v }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <button type="submit" class="btn ml-auto">
+                        Filter
+                    </button>
+
+                <button type="submit" name="export" value="true" class="btn ">Export Data</button>
+
+                </div>
+                </form>
+            </section>
+        </div>
+
+        <div class="container-fluid">
+            <div class="table-responsive">
+                <table class="table reports-table">
+                    <thead>
+                    <tr>
+                        <th>Trip Id&uarr;</th>
+                        <th>Date &uarr;&darr;</th>
+                        <th>Vehicle</th>
+                        <th>Type</th>
+                        <th>Cycle</th>
+                        <th>Driver</th>
+                        <th>Destination</th>
+                        <th>Leaving Time From Dhaka</th>
+                        <th>Arriving Time To Destination</th>
+                        <th>Leaving Time From Destination</th>
+                        <th>Arriving Time To Dhaka</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for trip in trips %}
+                        <form id="trip-list-form" method="post">{% csrf_token %}
+                            <tr>
+                                <td>{{ trip.id }}</td>
+                                <td>{{ trip.date }}</td>
+                                <td><i class="fa fa-circle light-green small-text pdr10"></i>{{ trip.vehicle }}</td>
+                                <td>{{ trip.vehicle.get_type }}</td>
+                                <td>{{ trip.vehicle_cycle }}</td>
+                                <td>{{ trip.vehicle.driver }}</td>
+                                <td>{{ trip.destination }}</td>
+
+                                <td>{{ trip.leaving_time_from_dhaka }}</td>
+                                <td>{{ trip.arriving_time_to_destination }}</td>
+                                <td>{{ trip.leaving_time_from_destination }}</td>
+                                <td>{{ trip.arriving_time_to_dhaka }}</td>
+
+                            </tr>
+                        </form>
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            {#            {% if trips.has_other_pages %}#}
+            {#                <ul class="pagination">#}
+            {#                    {% if trips.has_previous %}#}
+            {#                        <li><a href="?page={{ trips.previous_page_number }}">&laquo;</a></li>#}
+            {#                    {% else %}#}
+            {#                        <li class="disabled"><span>&laquo;</span></li>#}
+            {#                    {% endif %}#}
+            {#                    {% for i in trips.paginator.page_range %}#}
+            {#                        {% if trips.number == i %}#}
+            {#                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>#}
+            {#                        {% else %}#}
+            {#                            <li><a href="?page={{ i }}">{{ i }}</a></li>#}
+            {#                        {% endif %}#}
+            {#                    {% endfor %}#}
+            {#                    {% if trips.has_next %}#}
+            {#                        <li><a href="?page={{ trips.next_page_number }}">&raquo;</a></li>#}
+            {#                    {% else %}#}
+            {#                        <li class="disabled"><span>&raquo;</span></li>#}
+            {#                    {% endif %}#}
+            {#                </ul>#}
+            {#            {% endif %}#}
+
+        </div>
+    </div>
+{% endblock %}

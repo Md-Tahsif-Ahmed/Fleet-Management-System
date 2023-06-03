@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load trip_filters %}
+
+
+{% block content %}
+    <!-- Start Loading -->
+    <section class="loading-overlay">
+        <div class="Loading-Page">
+            <h2 class="loader">Loading...</h2>
+        </div>
+    </section>
+    <!-- End Loading  -->
+    <div class="vault-outer-wrapper">
+        <div class="sidebar">
+            <div class="sidebar__humbarger" id="sidebar__humbarger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="sidebar__inner">
+                <header class="desktop-logo">
+                    <a href="{% url 'trips' %}"> <span class="tv-short">VD</span> <span
+                            class="tv-large">Sundarban Courier Service (Pvt.) Ltd</span></a>
+                </header>
+                <div class="user-profile mt80 text-center">
+                    <div class="user-profile__photo-wrap">
+                        <a class="user-profile__photo" href="{% url 'trips' %}">
+                            <img class="img-circle user-profile__avater" alt=""
+                                 src="{% static 'trip/images/avatar-2.jpg' %}"/>
+                        </a>
+                    </div>
+                    <h3 class="user-profile__name color-white">{{ request.user.username }}</h3>
+                    <span class="user-profile__designation light-gray">{{ request.user.get_designation }}</span>
+                </div>
+                <div class="sidebar-menu pdt35">
+                    <ul class="nav panel-list menu-accordion">
+
+                        <li>
+                            <a href="{% url 'dashboard' %}" {% if view_name == 'dashboard' %}class="active"{% endif %}>
+                                <i class="fa fa-home sidebar-menu__icon"></i>
+                                <span class="menu-text">Dashboard</span>
+                            </a>
+                        </li>
+
+                        {% if user|has_group:'Manager' %}
+                            <li>
+                                <a href="{% url 'activity' %}" {% if view_name == 'activity' %}class="active"{% endif %}>
+                                    <i class="fa fa-car sidebar-menu__icon"></i>
+                                    <span class="menu-text">Activity</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+
+                        {% if user|has_group:'OCR' %}
+                            <li>
+                                <a href="{% url 'trips' %}" {% if view_name == 'trips' %}class="active"{% endif %}>
+                                    <i class="fa fa-bus sidebar-menu__icon"></i>
+                                    <span class="menu-text">Trips</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if user|has_group:'Manager' %}
+                            <li>
+                                <a href="{% url 'change_trip' %}" {% if view_name == 'change_trip' %}class="active"{% endif %}>
+                                    <i class="fa fa-car sidebar-menu__icon"></i>
+                                    <span class="menu-text">Trips</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <li>
+                            <a href="{% url 'trip_board' %}"
+                               {% if view_name == 'trip_board' %}class="active"{% endif %}>
+                                <i class="fa fa-table sidebar-menu__icon"></i>
+                                <span class="menu-text">Trip Board</span>
+                            </a>
+                        </li>
+
+                        {% if user|has_group:'OCR' %}
+                            <li>
+                                <a href="{% url 'vehicles_in_dhaka' %}"
+                                   {% if view_name == 'vehicles_in_dhaka' %}class="active"{% endif %}>
+                                    <i class="fa fa-map-marker sidebar-menu__icon"></i>
+                                    <span class="menu-text">Vehicles In Dhaka</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if user|has_group:'Manager' %}
+                            <li>
+                                <a href="{% url 'vehicles_driver' %}"
+                                   {% if view_name == 'vehicles_driver' %}class="active"{% endif %}>
+                                    <i class="fa fa-user sidebar-menu__icon"></i>
+                                    <span class="menu-text">Vehicles Driver</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if user|has_group:'Manager' %}
+                            <li>
+                                <a href="{% url 'all_routes' %}"
+                                   {% if view_name == 'all_routes' %}class="active"{% endif %}>
+                                    <i class="fa fa-road sidebar-menu__icon"></i>
+                                    <span class="menu-text">Routes</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if user|has_group:'Manager' %}
+                            <li>
+                                <a href="{% url 'reports' %}"
+                                   {% if view_name == 'reports' %}class="active"{% endif %}>
+                                    <i class="fa fa-bar-chart sidebar-menu__icon"></i>
+                                    <span class="menu-text">Reports</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <li>
+                            <a href="{% url 'password_change' %}" class="has-submenu"
+                               {% if view_name == 'settings' %}class="active"{% endif %}>
+                                <i class="fa fa-cog sidebar-menu__icon"></i>
+                                <span class="menu-text">Settings</span>
+                            </a>
+                            <ul class="dropdown">
+                                <li><a href="{% url 'password_change' %}">Password Change</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'logout' %}" {% if view_name == 'logout' %}class="active"{% endif %}>
+                                <i class="fa fa-sign-out sidebar-menu__icon"></i>
+                                <span class="menu-text">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {% include 'messages.html' %}
+
+        {% block main_content %}
+        {% endblock %}
+
+
+    </div>
+
+
+{% endblock %}

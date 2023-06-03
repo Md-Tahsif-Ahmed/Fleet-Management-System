@@ -1,0 +1,277 @@
+/* -----------------------------------
+** Leads List
+-------------------------------------*/
+.search-form{
+    @include breakpoint(max_sm){
+        position: relative;
+        .search-form__icon{
+            position: absolute;
+            top:6px;
+            left:0;
+        }
+        .input-group__input{
+            padding-left: 30px;
+        }
+    }
+}
+.leads-list-search-filter{
+    .actions-buttons-wrap{
+        border-right: 1px solid $border;
+        @include breakpoint(max_lg){
+            display: block;
+            padding-bottom: 10px;
+            border-right:0;
+        }
+        @include breakpoint(max_sm){
+            float: none !important;
+        }
+        .icon-circle{
+            margin-right: 3px;
+        }
+        &:after{
+            clear: both;
+        }
+    }
+}
+.leads-list-filter-result{
+    border:1px solid $border;
+    border-radius: 5px;
+    @include breakpoint(max_xs){
+        overflow-x: hidden;
+    }
+    &__text-content{
+        .label-title{
+            min-width: 80px;
+            @include breakpoint(max_sm){
+                display: block;
+                padding-bottom: 5px;
+            }
+
+        }
+        .name-label{
+            width:90px;
+        }
+        .equal-sign{
+            min-width:20px;
+        }
+    }
+    &__heading{
+        width:100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:15px 20px 0 20px;
+    }
+    .delete-icon{
+        margin-top: -5px;
+        padding-right: 15px;
+    }
+}
+.leads-list-add-filter{
+    border:1px solid $border;
+    border-radius: 5px;
+    padding:20px;
+    @include breakpoint(max_xs){
+        overflow-x: hidden;
+    }
+}
+.report-form{
+    .dashborad-select-box {
+        margin-bottom: 5px;
+        .btn {
+            padding: 9px 27px 9px 18px;
+        }
+    }
+}
+.leader-list-filter-actions{
+
+    @include breakpoint(max_lg){
+        padding-left: 0;
+    }
+
+    .dropdown-header {
+        letter-spacing: 4px;
+        text-transform: uppercase;
+    }
+    .bootstrap-select.btn-group .dropdown-menu li.dropdown-header {
+        padding:20px 20px 10px 20px;
+    }
+    .bootstrap-select.btn-group .dropdown-menu li a.opt{
+        padding-left: 20px;
+        white-space: normal;
+    }
+    .bootstrap-select.btn-group .dropdown-menu{
+        max-width: 230px;
+    }
+    .dropdown-menu .divider{
+        display: none;
+    }
+    .dashborad-select-box{
+        @include breakpoint(max_sm){
+            display: block !important;
+            margin-bottom: 5px !important;
+        }
+         .btn{
+            @include breakpoint(max_sm){
+                margin-bottom: 5px !important;
+            }
+        }
+    }
+}
+.routes-reserved-close{
+    float: none;
+    padding-left: 10px !important;
+    color: $base;
+    opacity: 1;
+    &:focus{
+        outline: 0;
+    }
+}
+.leads-page-wrapper{
+    .panel-body{
+        min-height: 275px;
+    }
+    @include breakpoint(max_sm){
+        .main-content-inner{
+            padding-left: 0;
+        }
+        .dis-table-cell-lg{
+            padding-left: 15px;
+
+            &:last-child{
+                border:0;
+                padding-left: 20px;
+                margin-right: 15px;
+                margin-left: 15px;
+            }
+        }
+    }
+}
+.leads-edit-page-wraper{
+    .edit-leads-info{
+        min-height: 375px;
+    }
+    @include breakpoint(max_sm){
+        .dis-table-cell-lg{
+            &:last-child{
+                padding-left: 15px;
+            }
+        }
+    }
+}
+.triplist-date-picker{
+    display: none;
+}
+.change-triplist-table{
+    .triplist-table-not-left{
+        //display: none;
+    }
+    .input-group--border-bottom .input-group__input{
+        min-width: 130px;
+    }
+}
+.triplist-table{
+    .input-group--border-bottom .input-group__input{
+        min-width: 130px;
+    }
+    .date-range-selector__calender{
+        right: 0;
+    }
+    .triplist-table-not-left{
+      //  position: absolute;
+        //top:33%;
+    }
+    tr{
+        td{
+            position: relative;
+        }
+    }
+}
+.triplist-actions-buttons{
+    .btn{
+        min-width: 80px;
+        font-size: 13px;
+        padding:5px 10px;
+    }
+}
+.triplist-actions-buttons, .vehiclesdriver-table{
+    padding-left: 10px;
+    min-width: 110px;
+    .button-hide{
+        display: none;
+    }
+}
+.fleet-magesess{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    .alert{
+        margin-bottom: 10px;
+    }
+}
+.daterangepicker{
+    .hourselect,.minuteselect,.ampmselect{
+        height: 30px;
+        border:1px solid $border;
+        background: transparent;
+    }
+}
+.btn-success:hover,.btn-default:hover{
+    background: $base;
+    border-color: $base;
+}
+@media (min-width: 564px){
+    .daterangepicker.single.ltr .ranges, .daterangepicker.single.ltr .calendar {
+        float: none;
+    }
+}
+.tripdrive-table{
+    &.table:not(.table--no-border) > tbody > tr > td{
+        padding: 7px 5px;
+        font-size: 18px;
+        color: #020202;
+    }
+    &.table:not(.table--no-border) > thead > tr > th{
+        padding: 10px 5px;
+        font-size: 18px;
+
+    }
+}
+.drivertable-driver-select{
+    display: none;
+}
+@media (min-width: 768px){
+    .triplist-table,.vehiclesdriver-table, .change-triplist-table, .routes-table, .vehicles-dhaka-table{
+        .modal .modal-header{
+            padding:20px 10px 10px 10px ;
+        }
+        .modal-dialog {
+            width: 350px;
+            margin: 30px auto;
+        }
+        .modal .modal-body{
+            padding:0 10px 25px 10px;
+        }
+    }
+
+}
+.max-trip-setting-button{
+    background: transparent;
+    color: $base;
+    border:0;
+    outline: 0;
+    .close{
+        color: $base;
+        opacity: 1;
+        line-height: 11px;
+    }
+}
+
+
+
+
+
+
+/* -----------------------------------
+** End Leads List
+-------------------------------------*/

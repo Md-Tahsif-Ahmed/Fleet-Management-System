@@ -1,0 +1,195 @@
+/* -----------------------------------
+** Timeline
+-------------------------------------*/
+.timeline-wrapper{
+    position: relative;
+    .timeline-item{
+        &:nth-child(1){
+            &:before{
+                position: absolute;
+                content: '';
+                background: $border;
+                height:60%;
+                width: 1px;
+                left:0;
+                top:-50%;
+            }
+            &:after{
+                position: absolute;
+                content: '';
+                background: #CACACA;
+                height: 9px;
+                width: 9px;
+                border-radius: 100%;
+                left:-4px;
+                top:-68%;
+                @include breakpoint(max_sm){
+                    display: none;
+                }
+            }
+        }
+
+    }
+}
+.dashed-right-border{
+    position: relative;
+    display: block;
+    &:before{
+        width:100%;
+        height: 2px;
+        content: '';
+        position: absolute;
+        top:8px;
+        left:0;
+        background: $border;
+        background-image: -webkit-linear-gradient(0deg,rgba(255,255,255,1) 25%,transparent 25%,transparent 50%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 75%,transparent 75%,transparent);
+        -webkit-background-size: 16px 1px;
+    }
+    span{
+        position: relative;
+        z-index: 2;
+    }
+}
+.dashed-bottom-border{
+    position: relative;
+    padding:0 3px 0 6px;
+    &:before{
+        width:100%;
+        height: 2px;
+        content: '';
+        position: absolute;
+        bottom:-6px;
+        left:0;
+        background: $border;
+        background-image: -webkit-linear-gradient(0deg,rgba(255,255,255,1) 25%,transparent 25%,transparent 50%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 75%,transparent 75%,transparent);
+        -webkit-background-size: 23px 1px;
+    }
+    span{
+        position: relative;
+        z-index: 2;
+    }
+}
+.timeline-item{
+    position: relative;
+    margin-bottom: 20px;
+    &:before{
+        position: absolute;
+        content: '';
+        background: $border;
+        height: 100%;
+        width: 1px;
+        left:0;
+        top:-94%;
+        @include breakpoint(max_sm){
+            display: none;
+        }
+    }
+    &__message-formate{
+        position: absolute;
+        top:5px;
+        left:-16px;
+        z-index: 3;
+        @include breakpoint(max_sm){
+            display: none;
+        }
+    }
+    &__user-image{
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top:5px;
+        left:25px;
+        @include breakpoint(max_sm){
+            left:-10px;
+        }
+    }
+    &__main-content{
+        margin-left: 75px;
+        border:1px solid $border;
+        border-radius: 5px;
+        @include breakpoint(max_sm){
+            margin-left: 35px;
+        }
+    }
+    &__heading{
+        border-bottom: 1px solid $border;
+        padding:12px 12px;
+    }
+    &__text-content{
+        padding:12px;
+    }
+}
+.timeline-metting-wrap{
+    display: table;
+    width:100%;
+    @include breakpoint(max_sm){
+        display: block;
+    }
+    .left-content{
+        display: table-cell;
+        width:55%;
+        @include breakpoint(max_sm){
+            display: block;
+            width: 100%;
+        }
+    }
+    .right-content{
+        width:45%;
+        display: table-cell;
+        position: relative;
+        padding-left: 20px;
+        padding-bottom: 60px;
+
+        &:before{
+            position: absolute;
+            left:0;
+            bottom:0;
+            height: 97%;
+            content: '';
+            background: $border;
+            width: 1px;
+        }
+        @include breakpoint(max_sm){
+            display: block;
+            width: 100%;
+            &:before{
+                display: none;
+            }
+        }
+        .button-wrap{
+            position: absolute;
+            bottom:15px;
+            right:20px;
+        }
+    }
+}
+.tiemline-create-task,
+.timeline-call-tab,
+.tiemline-metting,
+.timeline-email-tab{
+    .daterange-input-single{
+        width:100px;
+    }
+    .dis-inblock{
+        display: inline-block;
+    }
+}
+
+.timeline-filter-option{
+    position: relative;
+    display: inline-block;
+    .input-group__input{
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height: 100%;
+        z-index: 9;
+        opacity: 0;
+        cursor: pointer;
+        border-radius: 30px;
+    }
+}
+/* -----------------------------------
+**  End Timeline
+-------------------------------------*/

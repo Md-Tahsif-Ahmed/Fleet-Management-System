@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+
+
+{% block content %}
+  <h2>Add a Trip</h2>
+  <form method="post">
+    {% csrf_token %}
+    <!-- {{ form.as_p }} -->
+    {% bootstrap_form form %}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

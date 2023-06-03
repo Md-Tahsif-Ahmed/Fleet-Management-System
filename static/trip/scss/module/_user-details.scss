@@ -1,0 +1,18 @@
+.user-profile-page{
+    display: flex;
+    // justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    width: 100%;
+    .user-photo{
+        width:150px;
+        img{
+            width: 100%;
+        }
+    }
+    .user-details{
+        padding-left: 30px;
+        width: calc(100% - 200px);
+        max-width: 600px;
+    }
+}

@@ -1,0 +1,322 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+
+
+{% block main_content %}
+
+
+    <div class="main-content-outer">
+        <div class="main-content-inner main-content-inner--space">
+            <section class="pdb50">
+
+                <div class="pdt50">
+                    <h2 class="page-title mb20">Trips</h2>
+                </div>
+
+                <form class="search-form" method="get">
+                    <div class="dis-flex-md align-center">
+                        <i class="search-form__icon ion-ios-search large-text pdr25"></i>
+                        <div class="input-group input-group--no-border">
+                            <input name='q' type="text" class="input-group__input"
+                                   placeholder="Search Vehicle, Driver or Destination" value="{{ request.GET.q }}" />
+                        </div>
+{#                        <a href="#" class="btn btn--with-icon btn--medium ml-auto"><i#}
+{#                                class="ion-android-add pdr10 btn__icon"></i>Add Trip </a>#}
+                    </div>
+{#                </form>#}
+{##}
+{##}
+                <div class="pull-right no-border">
+                    <div class="leader-list-filter-actions dis-inblock pdl15">
+                        <select name="vehicle_type" class="selectpicker dashborad-select-box">
+                            <option value="">All Vehicle Types</option>
+                            {% for k, v in VEHICLE_TYPES.items %}
+                                <option value="{{ k }}" {% if request.GET.vehicle_type == k|stringformat:'s' %}selected{% endif %}>{{ v }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="route_type" class="selectpicker dashborad-select-box">
+                            <option value="">All Route Types</option>
+                            {% for k, v in ROUTE_TYPES.items %}
+                                <option value="{{ k }}" {% if request.GET.route_type == k|stringformat:'s' %}selected{% endif %}>{{ v }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="destination" class="selectpicker dashborad-select-box">
+                            <option value="">All Destination</option>
+                            {% for d in DESTINATIONS %}
+                                <option value="{{ d.id }}" {% if request.GET.destination == d.id|stringformat:'s' %}selected{% endif %}>{{ d.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="status" class="selectpicker dashborad-select-box">
+                            <option value="">All Status</option>
+                            {% for k, v in TRIP_STATUS.items %}
+                                <option value="{{ k }}" {% if request.GET.status == k|stringformat:'s' %}selected{% endif %}>{{ v }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">
+                        Filter
+                    </button>
+                </div>
+                </form>
+
+
+{#                <div class="modal fade add-lead-modal" id="add-lead-modal" tabindex="-1" role="dialog"#}
+{#                     aria-labelledby="add-lead-modalLabel">#}
+{#                    <div class="modal-dialog" role="document">#}
+{#                        <div class="modal-content">#}
+{#                            <div class="modal-header">#}
+{#                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span#}
+{#                                        aria-hidden="true">&times;</span></button>#}
+{#                                <h4 class="modal-title large-text" id="add-lead-modalLabel">Add a New Lead</h4>#}
+{#                            </div>#}
+{#                            <div class="modal-body">#}
+{#                                <form class="edit-leads-info white-bg no-padding no-border">#}
+{#                                    <div class="row">#}
+{#                                        <div class="col-xs-6 col-xxs-12 pdr5">#}
+{#                                            <div class="input-group input-group--border-bottom">#}
+{#                                                <label class="input-group__label">First Name</label>#}
+{#                                                <input type="text" class="input-group__input" value="Richard"/>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col-xs-6 col-xxs-12 pdrl">#}
+{#                                            <div class="input-group input-group--border-bottom">#}
+{#                                                <label class="input-group__label">Last Name</label>#}
+{#                                                <input type="text" class="input-group__input" value="Thompson"/>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="row">#}
+{#                                        <div class="col-xs-6 col-xxs-12 pdr5">#}
+{#                                            <div class="input-group input-group--border-bottom">#}
+{#                                                <label class="input-group__label">Mobile Number</label>#}
+{#                                                <input type="text" class="input-group__input"#}
+{#                                                       value="+62 812 5012 5285"/>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col-xs-6 col-xxs-12 pdl5">#}
+{#                                            <div class="input-group input-group--border-bottom">#}
+{#                                                <label class="input-group__label">Email</label>#}
+{#                                                <input type="email" class="input-group__input"#}
+{#                                                       value="r.thompson@gmail.com"/>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="row">#}
+{#                                        <div class="col-xs-6 col-xxs-12 pdr5">#}
+{#                                            <div class="input-group input-group--border-bottom">#}
+{#                                                <label class="input-group__label">Assigned To*</label>#}
+{#                                                <div class="input-group__select-wrap">#}
+{#                                                    <select class="selectpicker dashborad-select-box">#}
+{#                                                        <option>Regional Manager</option>#}
+{#                                                        <option>Regional Director</option>#}
+{#                                                    </select>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col-xs-6 col-xxs-12 pdl5">#}
+{#                                            <div class="input-group input-group--border-bottom">#}
+{#                                                <label class="input-group__label">Lead Status</label>#}
+{#                                                <div class="input-group__select-wrap">#}
+{#                                                    <select class="selectpicker dashborad-select-box">#}
+{#                                                        <option>New</option>#}
+{#                                                        <option>Old</option>#}
+{#                                                    </select>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="text-right pdt30">#}
+{#                                        <input type="reset" value="Discard" class="btn btn--border mr5"/>#}
+{#                                        <input type="submit" value="Save" class="btn"/>#}
+{#                                    </div>#}
+{#                                </form><!--/.edit-leads-info-->#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div><!--/.modal-->#}
+{#                <div class="leads-list-search-filter pdt40 mb20">#}
+{#                    <div class="actions-buttons-wrap dis-inblock pdr15">#}
+{#                        <span class="pdr20">2 data are selected</span>#}
+{#                        <button class="icon-circle icon-circle--large">#}
+{#                            <i class="ion-ios-trash-outline"></i>#}
+{#                        </button>#}
+{#                        <button class="icon-circle icon-circle--large">#}
+{#                            <i class="ion-edit"></i>#}
+{#                        </button>#}
+{#                        <button class="icon-circle icon-circle--large">#}
+{#                            <i class="ion-ios-person-outline"></i>#}
+{#                        </button>#}
+{#                        <button class="icon-circle icon-circle--large">#}
+{#                            <i class="ion-share"></i>#}
+{#                        </button>#}
+{#                    </div>#}
+{#                    <div class="leader-list-filter-actions dis-inblock pdl15">#}
+{#                        <select class="selectpicker dashborad-select-box" id="leads-filter-select">#}
+{#                            <optgroup label="MENU">#}
+{#                                <option value="1">All Leads</option>#}
+{#                                <option value="2">Today's Leads</option>#}
+{#                                <option value="3">All Green Leads</option>#}
+{#                                <option value="4">All Yellow Leads</option>#}
+{#                                <option value="5">All Red Leads</option>#}
+{#                                <option value="6">Leads wating to be approved to client</option>#}
+{#                                <option value="7">All Red Leads</option>#}
+{#                            </optgroup>#}
+{#                            <optgroup label="Custom Filter">#}
+{#                                <option value="create-new-filter">Create New Filter</option>#}
+{#                                <option value="9">Lead's Who haved aged more than 40 years old</option>#}
+{#                                <option value="10">Green Category</option>#}
+{#                            </optgroup>#}
+{#                        </select>#}
+{#                        <select class="selectpicker dashborad-select-box">#}
+{#                            <option selected>By Advisor</option>#}
+{#                            <option>By Age</option>#}
+{#                            <option>By Name</option>#}
+{#                        </select>#}
+{#                    </div>#}
+{#                        <div class="actions-buttons-wrap dis-inblock pull-right no-border">#}
+{#                            <span class="pdr20">1 of 1</span>#}
+{#                            <button class="icon-circle icon-circle--large">#}
+{#                                <i class="fa fa-angle-left"></i>#}
+{#                            </button>#}
+{#                            <button class="icon-circle icon-circle--large">#}
+{#                                <i class="fa fa-angle-right"></i>#}
+{#                            </button>#}
+{#                        </div>#}
+                    </section>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="table-responsive">
+                        <table class="table change-triplist-table">
+                            <thead>
+                                <tr>
+    {#                                <th>#}
+    {#                                    <div class="checkbox-item">#}
+    {#                                        <input class="checkbox-item__input" type="checkbox" id="checkbox-all"/>#}
+    {#                                        <label class="checkbox-item__label" for="checkbox-all"></label>#}
+    {#                                    </div>#}
+    {#                                </th>#}
+                                    <th>Trip Id&uarr;</th>
+                                    <th>Date &uarr;&darr;</th>
+                                    <th>Vehicle</th>
+                                    <th>Type</th>
+                                    <th>Driver</th>
+                                    <th>Destination</th>
+                                    <th>Status</th>
+                                    <th>Update</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for trip in trips %}
+                                <form id="trip-list-form" method="post">{% csrf_token %}
+                                    <tr>
+                                        <td>{{ trip.id }}</td>
+                                        <td>{{ trip.date }}</td>
+                                        <td>
+                                            <div class="triplist-table-not-left">
+                                                <span>{{ trip.vehicle.number }}</span>
+                                            </div>
+                                            <div class="triplist-date-picker">
+                                                <div class="input-group input-group--border-bottom">
+                                                    <select name="change_vehicle" class="form-control">
+                                                        <option value="">{{ trip.vehicle.number }}</option>
+                                                        {% for vehicle in not_assigned_vehicles %}
+                                                            <option value="{{ vehicle.id }}">{{ vehicle.number }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>{{ trip.vehicle.get_type }}</td>
+                                        <td>{{ trip.vehicle.driver }}</td>
+
+                                        <td>
+                                            <div class="triplist-table-not-left">
+                                                <span>{{ trip.destination.name }}</span>
+                                            </div>
+                                            <div class="triplist-date-picker">
+                                                <div class="input-group input-group--border-bottom">
+                                                    <select name="change_destination" class="form-control">
+                                                        <option value="">{{ trip.destination.name }}</option>
+                                                        {% for route in inactive_routes %}
+                                                            <option value="{{ route.id }}">{{ route.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>{{ trip.get_status }}</td>
+
+                                        <td>
+                                            <div class="triplist-actions-buttons">
+                                                <div>
+                                                    <button type="submit" class="btn btn--with-icon btn--small ml-auto triplist-cancle-button btn--danger mb5 button-hide">Cancle</button>
+                                                </div>
+                                                <button type="button"  data-toggle="modal" data-target="#mod{{ trip.id }}"
+                                                        class="btn btn--with-icon btn--small ml-auto triplist-save-button button-hide btn--success">Save
+                                                </button>
+                                                <button type="submit" class="btn btn--with-icon btn--small ml-auto triplist-update-button">Update</button>
+                                            </div>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="mod{{ trip.id }}" tabindex="-1" role="dialog">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title">Confirmation</h4>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    Are you Sure?
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      <button type="button" class="btn btn--with-icon btn--small btn--danger" data-dismiss="modal">NO</button>
+                                                      <button type="submit" name="save" value="{{ trip.id }}"
+                                                              class="btn btn--with-icon btn--small btn--success">YES
+                                                      </button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </form>
+                            {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    {% if trips.has_other_pages %}
+                        <ul class="pagination">
+                            {% if trips.has_previous %}
+                                <li><a href="?page={{ trips.previous_page_number }}">&laquo;</a></li>
+                            {% else %}
+                                <li class="disabled"><span>&laquo;</span></li>
+                            {% endif %}
+                            {% for i in trips.paginator.page_range %}
+                                {% if trips.number == i %}
+                                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if trips.has_next %}
+                                <li><a href="?page={{ trips.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                                <li class="disabled"><span>&raquo;</span></li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+
+
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

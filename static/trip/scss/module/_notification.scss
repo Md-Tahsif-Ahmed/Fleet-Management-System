@@ -1,0 +1,50 @@
+/* -----------------------------------
+** Notification
+-------------------------------------*/
+.notification-item{
+    padding:25px;
+    display: flex;
+    width:100%;
+    align-items: center;
+    border-bottom: 1px solid $border;
+    &:first-child{
+        border-radius: 5px 5px 0 0;
+    }
+    &__image{
+        width:40px;
+        img{
+            min-width:40px;
+        }
+    }
+    &__text-content{
+        padding-left: 20px;
+        strong{
+            font-weight: 600;
+        }
+    }
+    &__actions{
+        margin-left: auto;
+        opacity: 0;
+        transition: .3s;
+        padding-left: 10px;
+    }
+    &__icon{
+        font-size: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    &--not-show{
+        background: #F4F4F4;
+    }
+    &:hover{
+        .notification-item__actions{
+            opacity: 1;
+        }
+    }
+    @include breakpoint(max_md){
+        padding:20px 10px;
+    }
+}
+/* -----------------------------------
+** End Notification
+-------------------------------------*/

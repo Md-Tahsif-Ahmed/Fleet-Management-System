@@ -1,0 +1,45 @@
+/* -----------------------------------
+** Progress Status
+-------------------------------------*/
+.progress-stats{
+    &__heading{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:18px 25px;
+        border-bottom: 1px solid $border;
+        @include breakpoint(max_xs){
+            padding: 15px 15px;
+        }
+    }
+    &__title{
+        margin: 0;
+    }
+    &__text-content{
+        display: flex;
+        width:100%;
+        justify-content: space-around;
+        padding:35px 0;
+    }
+    &__item{
+        flex:1 1 auto;
+        border-right: 1px solid $border;
+        text-align: center;
+        &:last-child{
+            border-right:0;
+        }
+    }
+    &__number{
+        font-size: 24px;
+        line-height: 33px;
+        display: block;
+        color:$black;
+        padding-bottom: 10px;
+    }
+    &__label{
+
+    }
+}
+/* -----------------------------------
+** End Progress Status
+-------------------------------------*/

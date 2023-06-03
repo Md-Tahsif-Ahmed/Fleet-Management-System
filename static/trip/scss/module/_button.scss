@@ -1,0 +1,106 @@
+/* -----------------------------------
+** Button Style
+-------------------------------------*/
+.btn{
+    min-width: 100px;
+    display:inline-block;
+    padding:8px 20px;
+    background: $base;
+    border-radius: 100px;
+    color: $white;
+    text-align: center;
+    transition: .3s;
+    border:2px solid $base;
+    &:hover{
+        color: $white;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    &:focus{
+        outline: 0;
+        color: $white;
+    }
+    &--danger{
+        background: #d9534f;
+        border-color:  #d9534f;
+    }
+    &--success{
+        background: #5cb85c;
+        border-color: #5cb85c;
+    }
+}
+
+.btn--border{
+    background: transparent;
+    border:2px solid $border;
+    color: $bcolor;
+    padding:8px 20px;
+    &:focus{
+        color: $bcolor;
+    }
+    &:hover{
+        background: $base;
+        box-shadow: none;
+        border-color: $base;
+    }
+
+
+}
+.btn--large{
+    min-width: 220px;
+    padding:11px 20px;
+}
+.btn--medium{
+    min-width: 140px;
+}
+.btn--fluid{
+    display:block;
+    width:100%;
+}
+.btn--with-icon{
+    padding:4px 20px;
+    .btn__icon{
+        font-size: 24px;
+        color: $white;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+}
+.dashborad-select-box .btn{
+    &:hover{
+        background: $white;
+        border-color: $border;
+    }
+}
+.dashborad-select-box--fluid{
+    width: 100% !important;
+    //display: block !important;
+}
+.dashborad-select-box .btn{
+    border-color: $base;
+    //border-width: 1px;
+    padding: 9px 35px 9px 25px;
+    &:hover,&:focus{
+        border-color: $base !important;
+        .filter-option{
+            color: $base !important;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -----------------------------------
+** End Button Style
+-------------------------------------*/

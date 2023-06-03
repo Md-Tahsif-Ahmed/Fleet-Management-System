@@ -1,0 +1,50 @@
+{% extends 'sidebar.html' %}
+
+
+{% block main_content %}
+    <div class="main-content-outer">
+        <div class="main-content-inner main-content-inner--space">
+            <section class="pdb50">
+
+                <div class="pdt50">
+                    <h2 class="page-title mb20">Activity Logs</h2>
+                </div>
+
+
+                <form class="search-form" method="get">
+                    <div class="dis-flex-md align-center">
+                        <i class="search-form__icon ion-ios-search large-text pdr25"></i>
+                        <div class="input-group input-group--no-border">
+                            <input name='q' type="text" class="input-group__input"
+                                   placeholder="Search Anything" value="{{ request.GET.q }}"/>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="container-fluid">
+                        <div class="table-responsive vehiclesdriver-table-wrap">
+                            <table class="table vehiclesdriver-table">
+                                <thead>
+                                <tr>
+                                    <th>User Activity Log</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for action in activity_stream %}
+                                    <tr>
+                                        <td>{{ action }}</td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+
+{% endblock %}

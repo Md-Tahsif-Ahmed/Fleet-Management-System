@@ -1,0 +1,97 @@
+/* -----------------------------------
+** Advisor history
+-------------------------------------*/
+.advisor-history{
+    border:1px solid $border;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    &:first-child{
+        background: #F9F9F9;
+    }
+    &__heading{
+        padding:12px 15px;
+        border-bottom: 1px solid $border;
+    }
+    &__name{
+        margin:0 0 7px 0;
+        display: block;
+    }
+    &__text-content{
+        padding:13px 15px;
+    }
+    &__designation{
+        padding-bottom: 7px;
+        display: block;
+    }
+}
+.modal{
+    .modal-header{
+        border:0;
+        padding:23px 30px 15px 30px;
+    }
+    .modal-body{
+        padding: 15px 30px 30px 30px;
+    }
+    button.close{
+        font-size: 30px;
+        font-weight: 100;
+        color: $bcolor;
+        opacity: 1;
+        &:focus{
+            outline: 0;
+        }
+    }
+    .modal-content{
+        box-shadow: 3px 5px 10px 0 rgba(0,0,0,0.15);
+        border:0;
+    }
+}
+.leads-history-modal{
+    &__filter{
+        width:100%;
+        .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+            width: 400px;
+        }
+        .bootstrap-select.btn-group .dropdown-menu{
+            min-width: 400px;
+        }
+    }
+}
+.add-lead-modal{
+    .modal-header{
+        padding-bottom: 0;
+    }
+    .modal-body{
+        padding-top: 0;
+    }
+}
+.add-lead-modal.in{
+
+}
+@media (min-width: 768px){
+    .leads-history-modal{
+        .modal-dialog {
+            width: 640px;
+            margin: 30px  auto;
+        }
+    }
+    .add-lead-modal{
+        .modal-dialog {
+            width: 410px;
+            margin: 30px  auto;
+        }
+    }
+    .add-new-policy-modal{
+        .modal-dialog {
+            width: 410px;
+        }
+    }
+    .add-task-modal{
+        .modal-dialog {
+            width: 410px;
+        }
+    }
+}
+/* -----------------------------------
+** End Advisor history
+-------------------------------------*/
